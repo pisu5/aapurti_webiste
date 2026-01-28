@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Arrow -->
+  <path d="M4 2L28 16L18 18L16 28L4 2Z" fill="#5A592C"></path>
+
+  <!-- Subtle grain dot -->
+  <circle cx="19" cy="15" r="1.6" fill="#CDB623"></circle>
+</svg>
