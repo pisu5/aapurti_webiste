@@ -74,9 +74,9 @@ export default function VideoHeroSection() {
               },
             }}
           >
-            Transforming Agricultural Insurance.
-            <br />
-           Through Innovation and Excellence
+            Transforming Agricultural Insurance
+           
+           through Innovation and Excellence
           </Typography>
 
           <Typography
@@ -87,8 +87,8 @@ export default function VideoHeroSection() {
               maxWidth: 560,
             }}
           >
-            Aapurti Agribusiness System promises to bring major chnages to India's
-            agricultural insurance scene through its modern approach and new area of service.
+            Aapurti Agribusiness System promises to bring major changes to India's
+            agricultural insurance scenario through its modern approach and new area of service.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 2 }}>

@@ -40,9 +40,9 @@ const useCounter = (end, duration = 2200) => {
 
 /* ---------- Data ---------- */
 const METRICS = [
-  {
-    label: "Survey & CHM Completed",
-    value: 500000,
+   {
+    label: "Localized and Post-Harvest Surveys ",
+    value: 386000,
     suffix: "+",
     icon: MapOutlinedIcon,
     color: COLORS.techBlueGray,
@@ -50,8 +50,17 @@ const METRICS = [
     description: "Geo-verified land boundary surveys across regions.",
   },
   {
-    label: "CCE Co-witnessed",
-    value: 100000,
+    label: "CHM Completed",
+    value: 50000,
+    suffix: "+",
+    icon: MapOutlinedIcon,
+    color: COLORS.techBlueGray,
+    surface: COLORS.techBlueSoft,
+    description: "Geo-verified land boundary surveys across regions.",
+  },
+  {
+    label: "CCEs Co-witnessed",
+    value: 150000,
     suffix: "+",
     icon: AgricultureOutlinedIcon,
     color: COLORS.brandGreen,

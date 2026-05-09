@@ -67,12 +67,12 @@ export default function Navbar() {
             <Typography
               component="span"
               sx={{
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: 600,
                 color: COLORS.textPrimary,
               }}
             >
-              Aapurti Agribusiness
+              Aapurti
             </Typography>
           </Box>
 
