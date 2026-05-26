@@ -1,37 +1,36 @@
-// src/components/WhyChooseUs.tsx
 import React from "react";
-import { COLORS,THEME } from "../styles/colors";
+import { COLORS, THEME } from "../styles/colors";
 
 const FEATURES = [
     {
         title: "Insurance-First DNA",
         description:
-            "We come from the insurance industry and deeply understand underwriting logic, claim sensitivity, compliance, and insurer workflows — beyond surface-level field execution.",
+            "We are purpose-built for crop insurance operations. Every process, technology, and team member is aligned with insurer requirements and PMFBY compliance standards—ensuring seamless integration with your underwriting workflow.",
     },
     {
         title: "Deep Crop Insurance Expertise",
         description:
-            "Involved since the evolution of crop insurance in India, with hands-on experience across schemes, crops, seasons, and large-scale risk assessment programs.",
+            "With 7+ years of dedicated PMFBY experience and operations across 9 states, our team brings unparalleled domain knowledge—from land record verification to CCE methodology and claim assessment protocols.",
     },
     {
         title: "End-to-End Outsourced Services",
         description:
-            "Complete outsourced services for Agriculture Insurance — including surveys, validations, field operations, monitoring, and structured MIS reporting.",
+            "From office setup and manpower deployment to field execution, QC operations, and grievance management—we handle the complete operational lifecycle so you can focus on strategic decisions.",
     },
     {
         title: "Qualified & Scalable Manpower",
         description:
-            "Professionally trained and regionally deployed manpower capable of rapid scale across geographies while maintaining governance and consistency.",
+            "Our trained workforce of 480+ resources operates through a hybrid delivery model with regional language proficiency. Rapid mobilization capability ensures operational readiness within notice periods—scales up or down based on program requirements.",
     },
     {
         title: "Quality at Scale",
         description:
-            "Multi-layered quality checks, audits, and verification frameworks ensure precision, reliability, and timeliness even at high volumes.",
+            "Proven execution capability with 1.44 lakh+ CCEs co-witnessed, 3.86 lakh+ surveys completed, and 1.37 crore+ applications audited—delivering consistent accuracy across high-volume operations.",
     },
     {
         title: "Trusted Execution Partner",
         description:
-            "We work as a long-term execution partner aligned with insurer risk frameworks, transparency standards, and performance outcomes.",
+            "ISO/IEC 27001:2013 certified with robust information security infrastructure, dedicated project VLANs, multi-factor authentication, and strict compliance with DPDP Act 2023—your data is secure and operations are audit-ready.",
     },
 ];
 
@@ -42,88 +41,66 @@ export default function WhyChooseUs() {
             className="py-24"
         >
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid gap-16 lg:grid-cols-12 items-start">
-                    {/* LEFT: POSITIONING */}
-                    <div className="lg:col-span-4">
-                        <span
-                            className="inline-block mb-6 rounded-full px-4 py-1 text-sm font-semibold"
+
+                {/* TOP: HEADER & POSITIONING */}
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <span
+                        className="inline-block mb-4 rounded-full px-5 py-1.5 text-sm font-semibold tracking-wide uppercase"
+                        style={{
+                            backgroundColor: COLORS.brandGreenSoft,
+                            color: COLORS.brandGreen,
+                        }}
+                    >
+                        Why Choose Us
+                    </span>
+
+                    <h2
+                        className="text-4xl md:text-5xl font-bold leading-tight mb-6"
+                        style={{ color: THEME.heading }}
+                    >
+                        The Aapurti Advantage
+                    </h2>
+
+                    <p
+                        className="text-lg md:text-xl leading-relaxed"
+                        style={{ color: THEME.body }}
+                    >
+                        Your trusted execution partner for agricultural insurance programs
+                    </p>
+                </div>
+
+                {/* BOTTOM: FEATURE GRID */}
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {FEATURES.map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group"
                             style={{
-                                backgroundColor: COLORS.brandGreenSoft,
-                                color: COLORS.brandGreen,
+                                backgroundColor: THEME.card,
+                                border: `1px solid ${THEME.border}`,
                             }}
                         >
-                            Why Choose Us
-                        </span>
-
-                        <h2
-                            className="text-3xl md:text-4xl font-bold leading-tight mb-6"
-                            style={{ color: THEME.heading }}
-                        >
-                            Execution Excellence Built for
-                            <br className="hidden md:block" />
-                            Agriculture Insurance
-                        </h2>
-
-                        <p
-                            className="leading-relaxed mb-10"
-                            style={{ color: THEME.body }}
-                        >
-                            We combine deep insurance-domain intelligence with disciplined
-                            agricultural field execution — helping insurers manage risk,
-                            scale operations, and deliver outcomes with confidence.
-                        </p>
-
-                        <button
-                            className="rounded-xl px-8 py-4 text-sm font-semibold transition"
-                            style={{
-                                backgroundColor: THEME.cta,
-                                color: COLORS.white,
-                            }}
-                            onMouseOver={(e) =>
-                            (e.currentTarget.style.backgroundColor =
-                                THEME.ctaHover)
-                            }
-                            onMouseOut={(e) =>
-                                (e.currentTarget.style.backgroundColor = THEME.cta)
-                            }
-                        >
-                            Partner With Us
-                        </button>
-                    </div>
-
-                    {/* RIGHT: FEATURE GRID */}
-                    <div className="lg:col-span-8 grid gap-8 sm:grid-cols-2">
-                        {FEATURES.map((item, index) => (
+                            {/* Top Accent Line */}
                             <div
-                                key={index}
-                                className="relative rounded-2xl p-7 transition-all hover:-translate-y-1"
-                                style={{
-                                    backgroundColor: THEME.card,
-                                    border: `1px solid ${THEME.border}`,
-                                }}
+                                className="absolute top-0 left-0 h-1.5 w-full rounded-t-2xl opacity-80 group-hover:opacity-100 transition-opacity"
+                                style={{ backgroundColor: COLORS.earthBrown }}
+                            />
+
+                            <h3
+                                className="text-xl font-bold mb-4 mt-2"
+                                style={{ color: THEME.heading }}
                             >
-                                {/* Top Accent */}
-                                <div
-                                    className="absolute top-0 left-0 h-1 w-full rounded-t-2xl"
-                                    style={{ backgroundColor: COLORS.earthBrown }}
-                                />
+                                {item.title}
+                            </h3>
 
-                                <h3
-                                    className="text-lg font-semibold mb-3"
-                                    style={{ color: THEME.heading }}
-                                >
-                                    {item.title}
-                                </h3>
-
-                                <p
-                                    className="text-sm leading-relaxed"
-                                    style={{ color: THEME.body }}
-                                >
-                                    {item.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
+                            <p
+                                className="text-base leading-relaxed"
+                                style={{ color: THEME.body }}
+                            >
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

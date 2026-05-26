@@ -10,6 +10,8 @@ import featureAI from "../assets/ai.jpg";
 import featureInsurance from "../assets/insurace.jpg";
 // Note: Ensure you have a magazine image at this path or update it
 import magazineCover from "../assets/outlook.jpg";
+import { LeadershipSection, SkilledManpowerSection } from "../components/Team";
+import ModernProfessionalFooter from "../components/Footer";
 
 export default function FeaturedSection() {
   const cardHover = "hover:shadow-2xl hover:-translate-y-2 transition-all duration-500";
@@ -157,31 +159,11 @@ export default function FeaturedSection() {
           </div>
 
         </div>
+        <SkilledManpowerSection />
+        <LeadershipSection />
+        <ModernProfessionalFooter />
 
-        {/* ===== SECTION 4: THE FUTURE (Bento Grid) ===== */}
-        <div className="mt-32">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">The Future of Agri-Insurance</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">Innovating with Blockchain and IoT to build a sustainable rural ecosystem.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:border-green-200 transition-colors">
-              <Cpu className="text-green-600 mb-6" size={40} />
-              <h4 className="text-xl font-bold mb-4 text-slate-900">Blockchain Smart Contracts</h4>
-              <p className="text-slate-600">Leading the way for parametric insurance to ensure instant claim payments.</p>
-            </div>
-            <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:border-green-200 transition-colors">
-              <Satellite className="text-green-600 mb-6" size={40} />
-              <h4 className="text-xl font-bold mb-4 text-slate-900">Carbon Credit Insurance</h4>
-              <p className="text-slate-600">Participating in worldwide climate finance through sustainable ESG solutions.</p>
-            </div>
-            <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm hover:border-green-200 transition-colors">
-              <ShieldCheck className="text-green-600 mb-6" size={40} />
-              <h4 className="text-xl font-bold mb-4 text-slate-900">Dynamic Pricing</h4>
-              <p className="text-slate-600">AI-driven dynamic insurance pricing based on weather and soil data.</p>
-            </div>
-          </div>
-        </div>
+
 
       </div>
     </section>

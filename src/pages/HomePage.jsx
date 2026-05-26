@@ -10,6 +10,9 @@ import About from "../components/AboutUs";
 import FieldIntelligenceSection from "../components/FutureTechSection";
 import EnterpriseCTA from "../components/CTA";
 import WhyChooseUs from "../components/WhyChooseUs";
+import IndiaMap from "../components/IndianMap";
+import ContactForm from "../components/CTA";
+
 
 const HomePage = () => {
     return (
@@ -18,12 +21,14 @@ const HomePage = () => {
             <VideoHeroSection />
             <Metric />
             <Services />
-            <EnterpriseCTA />
+            <ContactForm />
             <ClientPartners />
-            <WhyChooseUs/>
+            <WhyChooseUs />
             {/* <SurveySummaryChart /> */}
             <FieldIntelligenceSection />
             {/* <About /> */}
+            {/* <IndiaMap /> */}
+
 
             <ModernProfessionalFooter />
         </div>

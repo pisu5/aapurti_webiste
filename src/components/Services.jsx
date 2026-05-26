@@ -73,7 +73,7 @@ const Services = () => {
             className="text-4xl md:text-6xl font-black mb-6 tracking-tight"
             style={{ color: COLORS.secondaryGreen }}
           >
-            Precision Agriculture <br className="hidden md:block" /> Survey Solutions
+            Robust Agriculture <br className="hidden md:block" />  Solutions
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

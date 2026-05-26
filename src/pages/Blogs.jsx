@@ -1,520 +1,254 @@
-import React, { useState } from "react";
-import { Container, Box, Button, Chip } from "@mui/material";
-import { COLORS } from "../styles/colors";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+// src/pages/Blogs.jsx
 
-const BLOGS = [
-  {
-    id: 1,
-    title: "How Land Survey Data Improves Crop Yield",
-    excerpt:
-      "Modern land surveying combined with GIS and AI helps farmers make data-driven decisions that increase productivity.",
-    tag: "Agriculture",
-    date: "Jan 5, 2026",
-    readTime: "5 min read",
-    featured: true,
-    color: COLORS.brandGreen,
-  },
-  {
-    id: 2,
-    title: "Digital Transformation in Agriculture SaaS",
-    excerpt:
-      "From soil analytics to satellite monitoring, SaaS platforms are redefining precision farming.",
-    tag: "Agri-Tech",
-    date: "Dec 22, 2025",
-    readTime: "6 min read",
-    color: COLORS.techBlueGray,
-  },
-  {
-    id: 3,
-    title: "Why Accurate Mapping Matters for Smart Farming",
-    excerpt:
-      "Accurate land mapping reduces risk, optimizes irrigation, and enables scalable farm planning.",
-    tag: "Survey & GIS",
-    date: "Dec 10, 2025",
-    readTime: "4 min read",
-    color: COLORS.earthBrown,
-  },
-];
+import React, { useEffect, useState } from "react";
+import { CalendarDays, Tag, User2 } from "lucide-react";
+
+const API_URL = "http://localhost:5000/api/blogs";
 
 const Blogs = () => {
-  const [hoveredId, setHoveredId] = useState(null);
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
-  const categories = ["All", "Agriculture", "Agri-Tech", "Survey & GIS"];
-  const featured = BLOGS.find((b) => b.featured);
-  const others = BLOGS.filter((b) => !b.featured);
+  // Fetch Blogs
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
 
-  return (
-    <Box sx={{ minHeight: "100vh", backgroundColor: COLORS.surface }}>
-      {/* ───────── Hero Header ───────── */}
-      <Box
-        sx={{
-          background: `linear-gradient(135deg, ${COLORS.brandGreen} 0%, ${COLORS.techBlueGray} 100%)`,
-          py: 8,
-          color: COLORS.white,
-        }}
-      >
-        <Container maxWidth="lg">
-          <h1
-            style={{
-              fontSize: "3rem",
-              fontWeight: 700,
-              color: COLORS.white,
-              margin: 0,
-              lineHeight: 1.2,
-            }}
-          >
-            Insights & Articles
-          </h1>
-          <p
-            style={{
-              marginTop: "1rem",
-              fontSize: "1.125rem",
-              color: "rgba(255, 255, 255, 0.9)",
-              maxWidth: "50rem",
-              lineHeight: 1.7,
-            }}
-          >
-            Expert perspectives on agriculture, land surveying, and modern SaaS
-            technologies powering data-driven farm management.
-          </p>
-        </Container>
-      </Box>
+      const response = await fetch(API_URL);
 
-      {/* ───────── Content Section ───────── */}
-      <Box sx={{ py: 8 }}>
-        <Container maxWidth="lg">
-          {/* Featured Blog Card (30% + Accent) */}
-          {featured && (
-            <Box
-              onMouseEnter={() => setHoveredId(featured.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              sx={{
-                marginBottom: 6,
-                backgroundColor: COLORS.white,
-                border: `2px solid ${featured.color}`,
-                borderRadius: "16px",
-                overflow: "hidden",
-                display: "grid",
-                gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-                transition: "all 0.4s ease",
-                boxShadow:
-                  hoveredId === featured.id
-                    ? `0 16px 40px rgba(47, 107, 79, 0.15)`
-                    : "0 2px 8px rgba(0, 0, 0, 0.06)",
-              }}
-            >
-              {/* Featured Visual */}
-              <Box
-                sx={{
-                  background: `linear-gradient(135deg, ${featured.color}20 0%, ${featured.color}40 100%)`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minHeight: "280px",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <Box
-                  sx={{
-                    fontSize: "4rem",
-                    opacity: 0.3,
-                    textAlign: "center",
-                  }}
-                >
-                  📊
-                </Box>
-              </Box>
+      if (!response.ok) {
+        throw new Error("Failed to fetch blogs");
+      }
 
-              {/* Featured Content */}
-              <Box sx={{ p: 4, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1.5,
-                      mb: 2,
-                    }}
-                  >
-                    <Chip
-                      label={featured.tag}
-                      sx={{
-                        backgroundColor: `${featured.color}20`,
-                        color: featured.color,
-                        fontWeight: 600,
-                        height: 32,
-                      }}
-                    />
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 0.5,
-                        color: COLORS.textMuted,
-                        fontSize: "0.875rem",
-                      }}
-                    >
-                      <AccessTimeIcon sx={{ fontSize: 16 }} />
-                      {featured.readTime}
-                    </Box>
-                  </Box>
+      const data = await response.json();
 
-                  <h2
-                    style={{
-                      fontSize: "1.75rem",
-                      fontWeight: 700,
-                      color: COLORS.textPrimary,
-                      lineHeight: 1.3,
-                      margin: "0 0 1rem 0",
-                    }}
-                  >
-                    {featured.title}
-                  </h2>
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      color: COLORS.textSecondary,
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {featured.excerpt}
-                  </p>
-                </Box>
+      // If API returns {blogs: []}
+      if (data.blogs) {
+        setBlogs(data.blogs);
+      } else {
+        // If API directly returns []
+        setBlogs(data);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Unable to load blogs.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    mt: 4,
-                    pt: 3,
-                    borderTop: `1px solid ${COLORS.borderLight}`,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.875rem",
-                      color: COLORS.textMuted,
-                    }}
-                  >
-                    {featured.date}
-                  </span>
-                  <Button
-                    variant="contained"
-                    endIcon={<ArrowForwardIcon />}
-                    sx={{
-                      backgroundColor: featured.color,
-                      color: COLORS.white,
-                      fontWeight: 600,
-                      textTransform: "none",
-                      borderRadius: "8px",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        transform: "translateX(4px)",
-                        boxShadow: `0 6px 16px rgba(0, 0, 0, 0.15)`,
-                      },
-                    }}
-                  >
-                    Read Full Article
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Open Blog
+  const openBlog = (blog) => {
+    setSelectedBlog(blog);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // Back to All Blogs
+  const backToBlogs = () => {
+    setSelectedBlog(null);
+  };
+
+  // Loading State
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg font-semibold">
+        Loading blogs...
+      </div>
+    );
+  }
+
+  // Error State
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-red-500 font-semibold">
+        {error}
+      </div>
+    );
+  }
+
+  // Single Blog View
+  if (selectedBlog) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-10 px-4">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-md overflow-hidden">
+
+          {/* Cover Image */}
+          {selectedBlog.coverImage && (
+            <img
+              src={selectedBlog.coverImage}
+              alt={selectedBlog.featuredImageAlt || selectedBlog.title}
+              className="w-full h-[400px] object-cover"
+            />
           )}
 
-          {/* Category Filter */}
-          <Box sx={{ mb: 5, display: "flex", gap: 1.5, flexWrap: "wrap" }}>
-            {categories.map((cat) => (
-              <Button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                sx={{
-                  backgroundColor:
-                    activeCategory === cat ? COLORS.brandGreen : COLORS.white,
-                  color:
-                    activeCategory === cat ? COLORS.white : COLORS.textSecondary,
-                  border:
-                    activeCategory === cat
-                      ? "none"
-                      : `1px solid ${COLORS.borderLight}`,
-                  fontWeight: 600,
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  px: 3,
-                  py: 1.2,
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
-                  "&:hover": {
-                    backgroundColor:
-                      activeCategory === cat ? COLORS.brandGreen : COLORS.surface,
-                  },
-                }}
-              >
-                {cat}
-              </Button>
-            ))}
-          </Box>
+          <div className="p-8">
 
-          {/* Blog Grid */}
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", lg: "1fr 1fr" },
-              gap: 4,
-            }}
-          >
-            {others.map((blog) => (
-              <Box
-                key={blog.id}
-                onMouseEnter={() => setHoveredId(blog.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                sx={{
-                  backgroundColor: COLORS.white,
-                  border: `1px solid ${COLORS.borderLight}`,
-                  borderRadius: "14px",
-                  overflow: "hidden",
-                  transition: "all 0.4s ease",
-                  boxShadow:
-                    hoveredId === blog.id
-                      ? `0 12px 32px rgba(47, 107, 79, 0.12)`
-                      : "0 2px 6px rgba(0, 0, 0, 0.05)",
-                  transform: hoveredId === blog.id ? "translateY(-6px)" : "none",
-                  display: "flex",
-                  flexDirection: "column",
+            <button
+              onClick={backToBlogs}
+              className="mb-6 px-4 py-2 bg-black text-white rounded-xl hover:opacity-90 transition"
+            >
+              ← Back to Blogs
+            </button>
+
+            {/* Category */}
+            <span className="inline-block bg-black text-white text-sm px-4 py-1 rounded-full mb-4">
+              {selectedBlog.category}
+            </span>
+
+            {/* Title */}
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              {selectedBlog.title}
+            </h1>
+
+            {/* Meta */}
+            <div className="flex flex-wrap items-center gap-5 text-gray-500 text-sm mb-6">
+
+              <div className="flex items-center gap-2">
+                <CalendarDays size={16} />
+                {new Date(
+                  selectedBlog.createdAt || Date.now()
+                ).toDateString()}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <User2 size={16} />
+                Admin
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Tag size={16} />
+                {selectedBlog.tags || "General"}
+              </div>
+            </div>
+
+            {/* Excerpt */}
+            {selectedBlog.excerpt && (
+              <p className="text-lg text-gray-600 leading-8 mb-8 border-l-4 border-black pl-4 italic">
+                {selectedBlog.excerpt}
+              </p>
+            )}
+
+            {/* Blog Content */}
+            <div className="prose max-w-none text-gray-800 leading-8">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: selectedBlog.content,
                 }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // All Blogs List
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+
+      <div className="max-w-7xl mx-auto">
+
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+            Latest Blogs
+          </h1>
+
+          <p className="text-gray-600 text-lg">
+            Explore insights, updates, guides, and industry knowledge.
+          </p>
+        </div>
+
+        {/* Empty State */}
+        {blogs.length === 0 ? (
+          <div className="text-center text-gray-500 text-lg">
+            No blogs available.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {blogs.map((blog) => (
+              <div
+                key={blog._id}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-100"
               >
-                {/* Image Placeholder */}
-                <Box
-                  sx={{
-                    background: `linear-gradient(135deg, ${blog.color}20 0%, ${blog.color}40 100%)`,
-                    height: 200,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "3rem",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      width: "100%",
-                      height: "100%",
-                      background: `radial-gradient(circle at ${hoveredId === blog.id ? "60%" : "50%"} ${hoveredId === blog.id ? "60%" : "50%"}, ${blog.color}30, transparent 70%)`,
-                      transition: "all 0.4s ease",
-                    }}
+
+                {/* Cover */}
+                {blog.coverImage && (
+                  <img
+                    src={blog.coverImage}
+                    alt={
+                      blog.featuredImageAlt || blog.title
+                    }
+                    className="w-full h-56 object-cover"
                   />
-                  <span style={{ position: "relative", zIndex: 1 }}>🌾</span>
-                </Box>
+                )}
 
-                {/* Content */}
-                <Box sx={{ p: 3, flex: 1, display: "flex", flexDirection: "column" }}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1.5,
-                      mb: 2,
-                    }}
-                  >
-                    <Chip
-                      label={blog.tag}
-                      sx={{
-                        backgroundColor: `${blog.color}15`,
-                        color: blog.color,
-                        fontWeight: 600,
-                        height: 28,
-                      }}
-                    />
-                  </Box>
+                <div className="p-6">
 
-                  <h3
-                    style={{
-                      fontSize: "1.125rem",
-                      fontWeight: 700,
-                      color: COLORS.textPrimary,
-                      lineHeight: 1.4,
-                      margin: "0 0 0.75rem 0",
-                      flex: 1,
-                    }}
-                  >
+                  {/* Category */}
+                  <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                    {blog.category || "General"}
+                  </span>
+
+                  {/* Title */}
+                  <h2 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
                     {blog.title}
-                  </h3>
+                  </h2>
 
-                  <p
-                    style={{
-                      fontSize: "0.9375rem",
-                      color: COLORS.textSecondary,
-                      lineHeight: 1.6,
-                      margin: "0 0 1.5rem 0",
-                      flex: 1,
-                    }}
-                  >
+                  {/* Excerpt */}
+                  <p className="text-gray-600 text-sm leading-7 line-clamp-3 mb-5">
                     {blog.excerpt}
                   </p>
 
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      pt: 2,
-                      borderTop: `1px solid ${COLORS.borderLight}`,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 1,
-                        color: COLORS.textMuted,
-                        fontSize: "0.8125rem",
-                      }}
-                    >
-                      <AccessTimeIcon sx={{ fontSize: 14 }} />
-                      {blog.readTime}
-                    </Box>
+                  {/* Tags */}
+                  {blog.tags && (
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {blog.tags
+                        .split(",")
+                        .map((tag, index) => (
+                          <span
+                            key={index}
+                            className="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full"
+                          >
+                            #{tag.trim()}
+                          </span>
+                        ))}
+                    </div>
+                  )}
+
+                  {/* Footer */}
+                  <div className="flex items-center justify-between">
+
+                    <span className="text-sm text-gray-400">
+                      {new Date(
+                        blog.createdAt || Date.now()
+                      ).toDateString()}
+                    </span>
 
                     <button
-                      style={{
-                        fontSize: "0.875rem",
-                        fontWeight: 700,
-                        color: blog.color,
-                        backgroundColor: "transparent",
-                        border: "none",
-                        cursor: "pointer",
-                        padding: 0,
-                        transition: "all 0.3s ease",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "4px",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.transform = "translateX(4px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.transform = "translateX(0)";
-                      }}
+                      onClick={() => openBlog(blog)}
+                      className="px-5 py-2 bg-black text-white rounded-xl hover:opacity-90 transition"
                     >
-                      Read →
+                      Read More
                     </button>
-                  </Box>
-                </Box>
-              </Box>
+                  </div>
+                </div>
+              </div>
             ))}
-          </Box>
-        </Container>
-      </Box>
-
-      {/* ───────── Newsletter CTA (Premium Section) ───────── */}
-      <Box
-        sx={{
-          background: `linear-gradient(135deg, ${COLORS.brandGreen} 0%, ${COLORS.earthBrown} 100%)`,
-          py: 10,
-          textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Background Elements */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: -100,
-            right: -100,
-            width: 300,
-            height: 300,
-            borderRadius: "50%",
-            background: "rgba(255, 255, 255, 0.05)",
-          }}
-        />
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: -50,
-            left: -50,
-            width: 250,
-            height: 250,
-            borderRadius: "50%",
-            background: "rgba(255, 255, 255, 0.05)",
-          }}
-        />
-
-        <Container maxWidth="sm" sx={{ position: "relative", zIndex: 1 }}>
-          <h3
-            style={{
-              fontSize: "2.25rem",
-              fontWeight: 700,
-              color: COLORS.white,
-              margin: "0 0 1rem 0",
-              lineHeight: 1.2,
-            }}
-          >
-            Never Miss Industry Updates
-          </h3>
-          <p
-            style={{
-              fontSize: "1.0625rem",
-              color: "rgba(255, 255, 255, 0.9)",
-              lineHeight: 1.7,
-              margin: "0 0 2rem 0",
-            }}
-          >
-            Get expert insights, platform updates, and agri-tech trends delivered
-            to your inbox every week.
-          </p>
-
-          <Box sx={{ display: "flex", gap: 1.5, justifyContent: "center", flexWrap: "wrap" }}>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: COLORS.accentPrimary,
-                color: COLORS.textPrimary,
-                fontWeight: 700,
-                textTransform: "none",
-                borderRadius: "8px",
-                paddingX: 4,
-                paddingY: 1.5,
-                fontSize: "1rem",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: COLORS.accentHover,
-                  transform: "translateY(-2px)",
-                  boxShadow: `0 8px 20px rgba(212, 160, 23, 0.3)`,
-                },
-              }}
-            >
-              Subscribe Now
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                borderColor: COLORS.white,
-                color: COLORS.white,
-                fontWeight: 700,
-                textTransform: "none",
-                borderRadius: "8px",
-                paddingX: 4,
-                paddingY: 1.5,
-                fontSize: "1rem",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  borderColor: COLORS.white,
-                },
-              }}
-            >
-              Learn More
-            </Button>
-          </Box>
-        </Container>
-      </Box>
-    </Box>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

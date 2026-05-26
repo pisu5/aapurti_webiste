@@ -1,20 +1,17 @@
  @import "tailwindcss";
 
  /* ============================= */
-/* Global Agriculture Cursor */
-/* ============================= */
+ /* Global Agriculture Cursor */
+ /* ============================= */
 
-html,
-body {
-    cursor: url("/src/assets/cursor.svg") 8 8, auto;
-}
 
-/* Interactive elements */
-a,
-button,
-[role="button"],
-input,
-textarea,
-select {
-    cursor: url("/src/assets/cursor.svg") 8 8, pointer;
-}
+
+ /* Interactive elements */
+ a,
+ button,
+ [role="button"],
+ input,
+ textarea,
+ select {
+     cursor: url("/src/assets/cursor.svg") 8 8, pointer;
+ }

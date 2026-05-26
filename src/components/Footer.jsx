@@ -53,7 +53,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-stone-50 pt-8 pb-4 border-t border-stone-200 mt-20 relative">
-      
+
       {/* ================= FLOATING NEWSLETTER CARD ================= */}
       {/* This completely breaks the old layout and gives a premium, modern feel */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative -top-24">
@@ -108,7 +108,7 @@ export default function Footer() {
       {/* ================= MAIN FOOTER CONTENT ================= */}
       <div className="max-w-7xl mx-auto px-6 -mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Column 1: Brand */}
           <div className="lg:pr-6">
             <Link to="/" aria-label="Aapurti Homepage">
@@ -118,7 +118,7 @@ export default function Footer() {
               Empowering institutions through disciplined agricultural field operations, precise land mapping, and reliable data delivery.
             </p>
             <div className="flex gap-4">
-              <SocialLink href="https://linkedin.com" icon={<Linkedin size={20} />} label="LinkedIn" />
+              <SocialLink href="https://www.linkedin.com/company/aapurti-agribusiness-system-pvt-ltd/" icon={<Linkedin size={20} />} label="LinkedIn" />
               <SocialLink href="https://facebook.com" icon={<Facebook size={20} />} label="Facebook" />
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function Footer() {
             <address className="not-italic space-y-4 text-stone-600 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-green-700 shrink-0 mt-0.5" />
-                <span>Gwalior, Madhya Pradesh<br/>India</span>
+                <span>Gwalior, Madhya Pradesh<br />India</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={18} className="text-green-700 shrink-0" />
@@ -170,12 +170,12 @@ export default function Footer() {
           <p className="text-stone-500 text-sm text-center md:text-left">
             © {year} Aapurti Agribusiness System Pvt. Ltd. All rights reserved.
           </p>
-          
+
           <div className="flex items-center gap-6 text-sm text-stone-500">
             <Link to="/privacy" className="hover:text-stone-900 transition">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-stone-900 transition">Terms of Service</Link>
             <span className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-100 rounded-full text-stone-700 font-semibold text-xs border border-stone-200">
-              <CheckCircle2 size={14} className="text-green-600"/> ISO 9001:2015
+              <CheckCircle2 size={14} className="text-green-600" /> ISO/IEC 27001:2013
             </span>
           </div>
         </div>

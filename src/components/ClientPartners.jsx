@@ -25,7 +25,7 @@ const CLIENTS = [
   { name: "Chola", logo: chola },
   {
     name: "Reliance General Insurance",
-    logo: "https://www.renewbuy.com/sites/default/files/2023-06/hi-logo-Reliance.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Reliance_General_Insurance.svg/120px-Reliance_General_Insurance.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20130710210831",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function ClientPartners() {
               mb: 1,
             }}
           >
-            Our Trusted Client
+            Trusted by Industry Leaders
           </Typography>
 
           <Typography
@@ -64,7 +64,7 @@ export default function ClientPartners() {
               mx: "auto",
             }}
           >
-            Our field execution and data platforms are deployed by insurers,
+            Our field execution and Off-site support have been trusted by insurers,
             enterprises, and public-sector programs nationwide.
           </Typography>
         </Box>

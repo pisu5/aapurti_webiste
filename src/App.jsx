@@ -14,8 +14,11 @@ import CropSurveyService from './pages/CropSurveys';
 import CropCuttingExperiment from './pages/CCEService';
 import About from './components/AboutUs';
 import Blogs from './pages/Blogs';
-import Pmfbyqc from './pages/Pmfbyqc';
+
 import BusinessTillDate from './pages/Business';
+import CropHealthMonitoring from './pages/CHM';
+import QC from './pages/QC';
+
 
 function App() {
   return (
@@ -33,10 +36,12 @@ function App() {
           <Route index element={<ServicesHome />} />
           <Route path="crop-surveys" element={<CropSurveyService />} />
           <Route path="cce" element={<CropCuttingExperiment />} />
-          <Route path="pmfby-qc" element={<BusinessTillDate />} />
+          <Route path="pmfby-qc" element={<QC />} />
+          <Route path="crop-health" element={<CropHealthMonitoring />} />
+
           {/* 
-          <Route path="crop-health" element={<CropHealth />} />
-          <Route path="pmfby-qc" element={<PMFBYQC />} />
+         
+         
           */}
         </Route>
 
