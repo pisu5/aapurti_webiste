@@ -168,8 +168,8 @@ export default function AgroContactForm() {
                         <Box sx={{ position: "relative", zIndex: 2, mt: "auto" }}>
                             <Divider sx={{ borderColor: "rgba(255,255,255,0.15)", mb: 4 }} />
                             <Stack spacing={3}>
-                                <ContactItem icon={<PhoneInTalkOutlined />} title="Call Us" value="+91 98765 43210" />
-                                <ContactItem icon={<EmailOutlined />} title="Email Support" value="contact@agrifield.com" />
+                                <ContactItem icon={<PhoneInTalkOutlined />} title="Call Us" value="+91" />
+                                <ContactItem icon={<EmailOutlined />} title="Email Support" value="services@aapurti.in" />
                             </Stack>
                         </Box>
                     </Box>
