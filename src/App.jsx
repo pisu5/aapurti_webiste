@@ -18,6 +18,7 @@ import Blogs from './pages/Blogs';
 import BusinessTillDate from './pages/Business';
 import CropHealthMonitoring from './pages/CHM';
 import QC from './pages/QC';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/newsletter" element={<NewsletterSubscribe />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
 
         <Route path="/services" element={<ServicesLayout />}>
           <Route index element={<ServicesHome />} />
@@ -38,6 +40,7 @@ function App() {
           <Route path="cce" element={<CropCuttingExperiment />} />
           <Route path="pmfby-qc" element={<QC />} />
           <Route path="crop-health" element={<CropHealthMonitoring />} />
+
 
           {/* 
          
